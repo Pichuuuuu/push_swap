@@ -6,14 +6,14 @@
 /*   By: Tamather <Tamather@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 14:45:04 by Tamather          #+#    #+#             */
-/*   Updated: 2021/10/05 19:44:00 by Tamather         ###   ########.fr       */
+/*   Updated: 2021/10/10 05:59:43 by Tamather         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-int	check_number(char **arg)
+static int	check_number(char **arg)
 {
 	int	i;
 	int	j;
@@ -36,7 +36,7 @@ int	check_number(char **arg)
 	return (0);
 }
 
-int	*atabtoitab(char **atab, int *size)
+static int	*atabtoitab(char **atab, int *size)
 {
 	int	i;
 	int	*itab;
@@ -56,7 +56,7 @@ int	*atabtoitab(char **atab, int *size)
 	return (itab);
 }
 
-int	check_tri(int *tab, int size)
+static int	check_tri(int *tab, int size)
 {
 	int	i;
 	int	t;
