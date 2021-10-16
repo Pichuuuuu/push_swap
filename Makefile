@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = push_swap.c
+SRCS = push_swap.c op.c op2.c op3.c
 SRCDIR = srcs
 OBJS_DIR = objs
 DEPS_DIR = deps

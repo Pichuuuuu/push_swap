@@ -12,41 +12,27 @@
 
 #include "push_swap.h"
 
-void	rra(int **a, int sizea)
+void	rra(int *a, int sizea)
 {
-	int	i;
 	int	tmp;
 
-	i = sizea - 1;
-	if (sizea > 1)
-	{
-		tmp = a[sizea - 1];
-		while (i > 0)
-		{
-			*a[i] = *a[i - 1];
-			i--;
-		}
-	}
+	tmp = a[sizea - 1];
+	ft_memmove(a + 1, a, (sizea - 1) * sizeof(int));
+	a[0] = tmp;
+	ft_putendl_fd("rra", 0);
 }
 
-void	rrb(int **b, int sizeb)
+void	rrb(int *b, int sizeb)
 {
-	int	i;
 	int	tmp;
 
-	i = sizeb - 1;
-	if (sizeb > 1)
-	{
-		tmp = b[sizeb - 1];
-		while (i > 0)
-		{
-			*b[i] = *b[i - 1];
-			i--;
-		}
-	}
+	tmp = b[sizeb - 1];
+	ft_memmove(b + 1, b, (sizeb - 1) * sizeof(int));
+	b[0] = tmp;
+	ft_putendl_fd("rrb", 0);
 }
 
-void	rrr(int **a, int sizea, int **b, int sizeb)
+void	rrr(int *a, int sizea, int *b, int sizeb)
 {
 	rra(a, sizea);
 	rrb(b, sizeb);

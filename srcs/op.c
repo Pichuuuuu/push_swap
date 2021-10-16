@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	sa(int **a, int sizea)
+void	sa(int *a, int sizea)
 {
 	int	tmp;
 
@@ -22,9 +22,10 @@ void	sa(int **a, int sizea)
 		a[0] = a[1];
 		a[1] = tmp;
 	}
+	ft_putendl_fd("sa", 0);
 }
 
-void	sb(int **b, int sizeb)
+void	sb(int *b, int sizeb)
 {
 	int	tmp;
 
@@ -34,15 +35,16 @@ void	sb(int **b, int sizeb)
 		b[0] = b[1];
 		b[1] = tmp;
 	}
+	ft_putendl_fd("sb", 0);
 }
 
-void	ss(int **a, int sizea, int **b, int sizeb)
+void	ss(int *a, int sizea, int *b, int sizeb)
 {
 	sa(a, sizea);
 	sb(b, sizeb);
 }
 
-void	pa(int **a, int *sizea, int **b, int *sizeb)
+void	pa(int *a, int *sizea, int *b, int *sizeb)
 {
 	int	i;
 
@@ -51,22 +53,23 @@ void	pa(int **a, int *sizea, int **b, int *sizeb)
 	{
 		while (i > 0)
 		{
-			*a[i - 1] = *a[i];
+			a[i - 1] = a[i];
 			i--;
 		}
-		*a[0] = *b[0];
+		a[0] = b[0];
 		i = 0;
 		while (i < *sizeb)
 		{
-			*b[i] = *b[i + 1];
+			b[i] = b[i + 1];
 			i++;
 		}
-		*sizeb--;
-		*sizea++;
+		*sizeb = *sizeb - 1;
+		*sizea = *sizea + 1;
 	}
+	ft_putendl_fd("pa", 0);
 }
 
-void	pb(int **a, int *sizea, int **b, int *sizeb)
+void	pb(int *a, int *sizea, int *b, int *sizeb)
 {
 	int	i;
 
@@ -75,17 +78,18 @@ void	pb(int **a, int *sizea, int **b, int *sizeb)
 	{
 		while (i > 0)
 		{
-			*b[i] = *b[i - 1];
+			b[i] = b[i - 1];
 			i--;
 		}
-		*b[0] = *a[0];
+		b[0] = a[0];
 		i = 0;
 		while (i < *sizeb)
 		{
-			*a[i] = *a[i + 1];
+			a[i] = a[i + 1];
 			i++;
 		}
-		*sizeb++;
-		*sizea--;
+		*sizeb = *sizeb + 1;
+		*sizea = *sizea - 1;
 	}
+	ft_putendl_fd("pb", 0);
 }
