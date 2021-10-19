@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	sa(int *a, int sizea)
+void	sw(int *a, int sizea)
 {
 	int	tmp;
 
@@ -25,17 +25,24 @@ void	sa(int *a, int sizea)
 	ft_putendl_fd("sa", 0);
 }
 
-void	sb(int *b, int sizeb)
+void	swap(t_s *s, int mode)
 {
-	int	tmp;
-
-	if (sizeb > 2)
+	if (mode == 0)
 	{
-		tmp = b[0];
-		b[0] = b[1];
-		b[1] = tmp;
+		sw(s->a, s->sa);
+		ft_putendl_fd("sa", A);
 	}
-	ft_putendl_fd("sb", 0);
+	else if (mode == B)
+	{
+		sw(s->b, s->sb);
+		ft_putendl_fd("sa", 0);
+	}
+	else if (mode == AB)
+	{
+		sw(t, n);
+		sw(t, n);
+		ft_putendl_fd("ss", 0);
+	}
 }
 
 void	ss(int *a, int sizea, int *b, int sizeb)

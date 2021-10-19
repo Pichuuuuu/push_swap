@@ -14,6 +14,18 @@
 # define PUSH_SWAP_H
 # include "libft.h"
 
+# define A 1
+# define B 2
+# define AB 3
+
+typedef struct s_s
+{
+    int *a;
+    int *b;
+    int sa;
+    int sb;
+}t_s;
+
 void	sa(int *a, int sizea);
 void	sb(int *b, int sizeb);
 void	ss(int *a, int sizea, int *b, int sizeb);

@@ -95,12 +95,62 @@ void prints(int *a, int sizea)
 
 }
 
-void	sort(int *a, int sizea, int *b, int sizeb)
+int min_pos(int *t, int n)
 {
-	b = NULL;
-	sizeb = 0;
-	if (sizea == 3)
+	int i;
+	int pos;
+	int posnum;
+	
+	i = 0;
+	posnum = t[0];
+	while (i < n)
+	{
+		if(posnum < t[i])
+		{
+			posnum = t[i];
+			pos = i;
+		}
+		i++;
+	}
+	return (pos);
+}
+
+void	ascend_elem(int *t, int n)
+{
+	int pos = min_pos(t, n);
+	while(pos != 0)
+	{
+		if(pos > n / 2)
+		{
+			rra(t, n);
+			pos++;
+		}
+		else
+		{
+			ra(t, n);
+			pos--;
+		}
+		if(pos == n)
+			pos = 0;
+	}
+}
+
+void	sort5(int *a, int sizea, int *b, int sizeb)
+{
+	while(sizea > 3)
+	{
+
+	}
+}
+
+void	sort(t_s *s)
+{
+	if(s->sa == 2)
+		swap(s, A);
+	else if (s->sa == 3)
 		sort3(a);
+	else if(s->sa <= 5)
+		sort5(a, sizea);
 }
 
 static int	check_tri(int *tab, int size)
@@ -123,12 +173,9 @@ static int	check_tri(int *tab, int size)
 
 int	main(int argc, char const **argv)
 {
-	int	*a;
-	int *b;
-	int	sizea;
+	t_s s;
 
-	sizea = 0;
-	b = NULL;
+	ft_bzero(&s, sizeof(t_s));
 	(void)argc;
 	if (check_number((char **)argv + 1))
 	{
@@ -137,19 +184,19 @@ int	main(int argc, char const **argv)
 	}
 	else
 	{
-		a = atabtoitab((char **)argv + 1, &sizea);
-		if (!check_tri(a, sizea))
+		s.a = atabtoitab((char **)argv + 1, &s.sa);
+		if (!check_tri(s.a, s.sa))
 		{
-			b = malloc(sizeof(int) * sizea);
-			if(!b)
+			s.b = malloc(sizeof(int) * s.sa);
+			if(!s.b)
 				exit(1);
-			sort(a, sizea, b, 0);
+			sort(&s);
 		}
-		prints(a, sizea);
-		if (check_tri(a, sizea))
+		prints(s.a, s.sa);
+		if (check_tri(s.a, s.sa))
 			ft_putendl_fd("yes", 0);
-		free(a);
-		free(b);
+		free(s.a);
+		free(s.b);
 	}
 	return (0);
 }
