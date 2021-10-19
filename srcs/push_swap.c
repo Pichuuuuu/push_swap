@@ -56,23 +56,23 @@ static int	*atabtoitab(char **atab, int *size)
 	return (itab);
 }
 
-static void sort3(int *a)
+static void sort3(t_s *s)
 {
-	if (a[2] > a[0] && a[0] > a[1])
-		sa(a, 3);
-	else if (a[0] > a[2] && a[2] > a[1])
-		ra(a, 3);
-	else if (a[1] > a[0] && a[0] > a[2])
-		rra(a, 3);
-	else if (a[0] > a[1] && a[1] > a[2])
+	if (s->a[2] > s->a[0] && s->a[0] > s->a[1])
+		swap(s, A);
+	else if (s->a[0] > s->a[2] && s->a[2] > s->a[1])
+		rotate(s, A);
+	else if (s->a[1] > s->a[0] && s->a[0] > s->a[2])
+		rrotate(s, A);
+	else if (s->a[0] > s->a[1] && s->a[1] > s->a[2])
 	{
-		sa(a, 3);
-		rra(a, 3);
+		swap(s, A);
+		rrotate(s, A);
 	}
-	else if(a[0] < a[1] && a[1] > a[2])
+	else if(s->a[0] < s->a[1] && s->a[1] > s->a[2])
 	{
-		sa(a, 3);
-		ra(a, 3);
+		swap(s, A);
+		rotate(s, A);
 	}
 	else
 	{
@@ -115,19 +115,22 @@ int min_pos(int *t, int n)
 	return (pos);
 }
 
-void	ascend_elem(int *t, int n)
+void	ascend_min_elem(int *t, int n)
 {
-	int pos = min_pos(t, n);
+	int pos;
+
+	pos = min_pos(t, n);
+	ft_putnbr(pos);
 	while(pos != 0)
 	{
 		if(pos > n / 2)
 		{
-			rra(t, n);
+			rro(t, n);
 			pos++;
 		}
 		else
 		{
-			ra(t, n);
+			ro(t, n);
 			pos--;
 		}
 		if(pos == n)
@@ -135,11 +138,18 @@ void	ascend_elem(int *t, int n)
 	}
 }
 
-void	sort5(int *a, int sizea, int *b, int sizeb)
+void	sort5(t_s *s)
 {
-	while(sizea > 3)
+	while(s->sa > 3)
 	{
-
+		ascend_min_elem(s->a, s->sa);
+		push(s, B);
+	}
+	sort3(s);
+	while(s->sb > 0)
+	{
+		ft_putnbr(s->sb);
+		push(s, A);
 	}
 }
 
@@ -148,9 +158,9 @@ void	sort(t_s *s)
 	if(s->sa == 2)
 		swap(s, A);
 	else if (s->sa == 3)
-		sort3(a);
+		sort3(s);
 	else if(s->sa <= 5)
-		sort5(a, sizea);
+		sort5(s);
 }
 
 static int	check_tri(int *tab, int size)

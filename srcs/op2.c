@@ -12,26 +12,61 @@
 
 #include "push_swap.h"
 
-void	ra(int *a, int sizea)
+void	ro(int *t, int n)
 {
 	int	tmp;
-	tmp = a[0];
-	ft_memmove(a, a + 1, (sizea - 1) * sizeof(int));
-	a[sizea - 1] = tmp;
-	ft_putendl_fd("ra", 0);
+	tmp = t[0];
+	ft_memmove(t, t + 1, (n - 1) * sizeof(int));
+	t[n - 1] = tmp;
 }
 
-void	rb(int *b, int sizeb)
+
+void	rotate(t_s *s, int mode)
+{
+	if (mode == 0)
+	{
+		ro(s->a, s->sa);
+		ft_putendl_fd("ra", A);
+	}
+	else if (mode == B)
+	{
+		ro(s->b, s->sb);
+		ft_putendl_fd("rb", B);
+	}
+	else if (mode == AB)
+	{
+		ro(s->a, s->sa);
+		ro(s->b, s->sb);
+		ft_putendl_fd("rr", AB);
+	}
+}
+
+void	rro(int *t, int n)
 {
 	int	tmp;
-	tmp = b[0];
-	ft_memmove(b, b + 1, (sizeb - 1) * sizeof(int));
-	b[sizeb - 1] = tmp;
-	ft_putendl_fd("rb", 0);
+
+	tmp = t[n - 1];
+	ft_memmove(t + 1, t, (n- 1) * sizeof(int));
+	t[0] = tmp;
 }
 
-void	rr(int *a, int sizea, int *b, int sizeb)
+
+void	rrotate(t_s *s, int mode)
 {
-	ra(a, sizea);
-	rb(b, sizeb);
+	if (mode == 0)
+	{
+		rro(s->a, s->sa);
+		ft_putendl_fd("rra", A);
+	}
+	else if (mode == B)
+	{
+		rro(s->b, s->sb);
+		ft_putendl_fd("rrb", B);
+	}
+	else if (mode == AB)
+	{
+		rro(s->a, s->sa);
+		rro(s->b, s->sb);
+		ft_putendl_fd("rrr", AB);
+	}
 }
