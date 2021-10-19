@@ -26,10 +26,17 @@ typedef struct s_s
     int sb;
 }t_s;
 
-void	rrotate(t_s *s, int mode);
-void	rotate(t_s *s, int mode);
-void	swap(t_s *s, int mode);
-void	push(t_s *s, int mode);
+void	sa(t_s *s);
+void	sb(t_s *s);
+void	ss(t_s *s);
+void	pa(t_s *s);
+void	pb(t_s *s);
+void	ra(t_s *s);
+void	rb(t_s *s);
+void	rr(t_s *s);
+void	rra(t_s *s);
+void	rrb(t_s *s);
+void	rrr(t_s *s);
 void	pu(int *t, int *n, int *td, int *nd);
 void	sw(int *a, int sizea);
 void	ro(int *t, int n);

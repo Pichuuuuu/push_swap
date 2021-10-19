@@ -20,25 +20,23 @@ void	ro(int *t, int n)
 	t[n - 1] = tmp;
 }
 
-
-void	rotate(t_s *s, int mode)
+void	ra(t_s *s)
 {
-	if (mode == 0)
-	{
-		ro(s->a, s->sa);
-		ft_putendl_fd("ra", A);
-	}
-	else if (mode == B)
-	{
-		ro(s->b, s->sb);
-		ft_putendl_fd("rb", B);
-	}
-	else if (mode == AB)
-	{
-		ro(s->a, s->sa);
-		ro(s->b, s->sb);
-		ft_putendl_fd("rr", AB);
-	}
+	ro(s->a, s->sa);
+	ft_putendl_fd("ra", 1);
+}
+
+void	rb(t_s *s)
+{
+	ro(s->b, s->sb);
+	ft_putendl_fd("rb", 1);
+}
+
+void	rr(t_s *s)
+{
+	ro(s->a, s->sa);
+	ro(s->b, s->sb);
+	ft_putendl_fd("rr", 1);
 }
 
 void	rro(int *t, int n)
@@ -46,27 +44,25 @@ void	rro(int *t, int n)
 	int	tmp;
 
 	tmp = t[n - 1];
-	ft_memmove(t + 1, t, (n- 1) * sizeof(int));
+	ft_memmove(t + 1, t, (n - 1) * sizeof(int));
 	t[0] = tmp;
 }
 
-
-void	rrotate(t_s *s, int mode)
+void	rra(t_s *s)
 {
-	if (mode == 0)
-	{
-		rro(s->a, s->sa);
-		ft_putendl_fd("rra", A);
-	}
-	else if (mode == B)
-	{
-		rro(s->b, s->sb);
-		ft_putendl_fd("rrb", B);
-	}
-	else if (mode == AB)
-	{
-		rro(s->a, s->sa);
-		rro(s->b, s->sb);
-		ft_putendl_fd("rrr", AB);
-	}
+	rro(s->a, s->sa);
+	ft_putendl_fd("rra", 1);
+}
+
+void	rrb(t_s *s)
+{
+	rro(s->b, s->sb);
+	ft_putendl_fd("rrb", 1);
+}
+
+void	rrr(t_s *s)
+{
+	rro(s->a, s->sa);
+	rro(s->b, s->sb);
+	ft_putendl_fd("rrr", 1);
 }

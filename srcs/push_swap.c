@@ -25,11 +25,13 @@ static int	check_number(char **arg)
 	{
 		j = 0;
 		while (arg[i][j])
-			if (!ft_isdigit(arg[i][j++]))
+		{
+			if (!(arg[i][j++] != '-' || j != 0) && !ft_isdigit(arg[i][j++]))
 				return (1);
+		}
 		j = i + 1;
 		while (arg[j])
-			if (!ft_strncmp(arg[i], arg[j++], 10))
+			if (!ft_strncmp(arg[i], arg[j++], ft_strlen(arg[i])))
 				return (1);
 		i++;
 	}
@@ -59,24 +61,20 @@ static int	*atabtoitab(char **atab, int *size)
 static void sort3(t_s *s)
 {
 	if (s->a[2] > s->a[0] && s->a[0] > s->a[1])
-		swap(s, A);
+		sa(s);
 	else if (s->a[0] > s->a[2] && s->a[2] > s->a[1])
-		rotate(s, A);
+		ra(s);
 	else if (s->a[1] > s->a[0] && s->a[0] > s->a[2])
-		rrotate(s, A);
+		rra(s);
 	else if (s->a[0] > s->a[1] && s->a[1] > s->a[2])
 	{
-		swap(s, A);
-		rrotate(s, A);
+		sa(s);
+		rra(s);
 	}
 	else if(s->a[0] < s->a[1] && s->a[1] > s->a[2])
 	{
-		swap(s, A);
-		rotate(s, A);
-	}
-	else
-	{
-		ft_putendl_fd("nop", 0);
+		sa(s);
+		ra(s);
 	}
 	
 }
@@ -89,7 +87,7 @@ void prints(int *a, int sizea)
 	while (i < sizea)
 	{
 		ft_putnbr(a[i]);
-		ft_putendl_fd("", 0);
+		ft_putendl_fd("", 1);
 		i++;
 	}
 
@@ -103,9 +101,10 @@ int min_pos(int *t, int n)
 	
 	i = 0;
 	posnum = t[0];
+	pos = 0;
 	while (i < n)
 	{
-		if(posnum < t[i])
+		if(posnum > t[i])
 		{
 			posnum = t[i];
 			pos = i;
@@ -115,22 +114,64 @@ int min_pos(int *t, int n)
 	return (pos);
 }
 
+int seg_pos(int *t, int n, int seg)
+{
+	int i;
+	int pos;
+	
+	i = 0;
+	pos = 0;
+	while (i < n)
+	{
+		if(seg > t[i] && )
+			return (pos);
+		i++;
+	}
+}
+
 void	ascend_min_elem(int *t, int n)
 {
 	int pos;
 
 	pos = min_pos(t, n);
-	ft_putnbr(pos);
 	while(pos != 0)
 	{
 		if(pos > n / 2)
 		{
 			rro(t, n);
+			ft_putendl_fd("rra", 1);
 			pos++;
 		}
 		else
 		{
 			ro(t, n);
+			ft_putendl_fd("ra", 1);
+
+			pos--;
+		}
+		if(pos == n)
+			pos = 0;
+	}
+}
+
+void	ascend_seg_elem(int *t, int n, int seg)
+{
+	int pos;
+
+	pos = seg_pos(t, n, seg);
+	while(pos != 0)
+	{
+		if(pos > n / 2)
+		{
+			rro(t, n);
+			ft_putendl_fd("rra", 1);
+			pos++;
+		}
+		else
+		{
+			ro(t, n);
+			ft_putendl_fd("ra", 1);
+
 			pos--;
 		}
 		if(pos == n)
@@ -143,20 +184,32 @@ void	sort5(t_s *s)
 	while(s->sa > 3)
 	{
 		ascend_min_elem(s->a, s->sa);
-		push(s, B);
+		pb(s);
 	}
 	sort3(s);
 	while(s->sb > 0)
+		pa(s);
+}
+
+void sort_all(t_s *s)
+{
+	int seg;
+	int i;
+
+	seg = (s->sa / 20);
+	i = 1;
+	if(seg%20)
+		seg++;
+	while (i <= seg)
 	{
-		ft_putnbr(s->sb);
-		push(s, A);
+		
 	}
 }
 
 void	sort(t_s *s)
 {
 	if(s->sa == 2)
-		swap(s, A);
+		sa(s);
 	else if (s->sa == 3)
 		sort3(s);
 	else if(s->sa <= 5)
@@ -202,9 +255,9 @@ int	main(int argc, char const **argv)
 				exit(1);
 			sort(&s);
 		}
-		prints(s.a, s.sa);
-		if (check_tri(s.a, s.sa))
-			ft_putendl_fd("yes", 0);
+		//prints(s.a, s.sa);
+		//if (check_tri(s.a, s.sa))
+		//	ft_putendl_fd("yes", 0);
 		free(s.a);
 		free(s.b);
 	}

@@ -24,48 +24,45 @@ void	sw(int *a, int sizea)
 	}
 }
 
-void	swap(t_s *s, int mode)
+void	sa(t_s *s)
 {
-	if (mode == 0)
-	{
-		sw(s->a, s->sa);
-		ft_putendl_fd("sa", A);
-	}
-	else if (mode == B)
-	{
-		sw(s->b, s->sb);
-		ft_putendl_fd("sb", B);
-	}
-	else if (mode == AB)
-	{
-		sw(s->a, s->sa);
-		sw(s->b, s->sb);
-		ft_putendl_fd("ss", AB);
-	}
+	sw(s->a, s->sa);
+	ft_putendl_fd("sa", 1);
+}
+
+void	sb(t_s *s)
+{
+	sw(s->b, s->sb);
+	ft_putendl_fd("sb", 1);
+}
+
+void	ss(t_s *s)
+{
+	sw(s->a, s->sa);
+	sw(s->b, s->sb);
+	ft_putendl_fd("ss", 1);
 }
 
 void	pu(int *t, int *n, int *td, int *nd)
 {
-	if (*n > 1)
+	if (*n > 0)
 	{
-		ft_memmove(td + 1, td, *n - 1);
+		ft_memmove(td + 1, td, (*nd) * sizeof(int));
 		td[0] = t[0];
-		ft_memmove(td, td - 1, *n - 1);
+		ft_memmove(t, t + 1, (*n - 1) * sizeof(int));
 		*nd = *nd + 1;
 		*n = *n - 1;
 	}
 }
 
-void	push(t_s *s, int mode)
+void	pa(t_s *s)
 {
-	if (mode == 0)
-	{
-		pu(s->b, &(s->sb), s->a, &(s->sb));
-		ft_putendl_fd("pa", A);
-	}
-	else if (mode == B)
-	{
-		pu(s->a, &(s->sa), s->b, &(s->sb));
-		ft_putendl_fd("pb", B);
-	}
+	pu(s->b, &s->sb, s->a, &s->sa);
+	ft_putendl_fd("pa", 1);
+}
+
+void	pb(t_s *s)
+{
+	pu(s->a, &s->sa, s->b, &s->sb);
+	ft_putendl_fd("pb", 1);
 }
