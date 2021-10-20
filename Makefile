@@ -6,11 +6,11 @@
 #    By: Tamather <Tamather@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/10 08:34:58 by tamather          #+#    #+#              #
-#    Updated: 2021/10/05 15:14:48 by Tamather         ###   ########.fr        #
+#    Updated: 2021/10/20 21:07:57 by Tamather         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = push_swap.c op.c op2.c
+SRCS = push_swap.c push.c rotate.c rrotate.c swap.c simple_sort.c parsing.c utils.c sort.c utils2.c
 SRCDIR = srcs
 OBJS_DIR = objs
 DEPS_DIR = deps
